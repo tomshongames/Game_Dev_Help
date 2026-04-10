@@ -1,0 +1,54 @@
+Treat this as an automatic refactor task, not a teaching task.
+
+I will provide a single Godot/GDScript script or pasted code block.
+
+Your job is to refactor the provided code so it follows strict Godot naming conventions and style rules without changing behavior, intended output, or safe project integration.
+
+Process:
+1. Inspect the full provided code before making changes.
+2. Identify internal relationships between classes, functions, signals, constants, nodes, and references.
+3. Determine what can be safely standardized or renamed.
+4. Refactor only after understanding the script as a whole.
+
+Naming rules:
+- Use snake_case for variables, functions, parameters, signals, file names, and folder names.
+- Use PascalCase for class names, scene names, and node names.
+- Use UPPER_CASE for constants.
+
+Refactor rules:
+- Rename variables, functions, parameters, signals, classes, and constants whenever it is safe and useful to do so.
+- Keep all related references consistent after every safe rename.
+- Rename booleans to natural names such as is_dead, can_move, has_target, and has_key when appropriate.
+- Rename for clarity only when the current name is clearly too vague, misleading, a typo, or overly minimal.
+- Prefer minimal necessary changes over aggressive refactoring.
+- Preserve logic, behavior, intended output, structure, ordering, formatting style, indentation, and line endings unless a change is required for correctness or consistency.
+- Do not restructure the code unnecessarily.
+- Do not change execution order, node paths, scene structure, or project-facing behavior unless required to keep the code working.
+- Apply the same naming rules to @export, @onready, signals, enums, and class_name declarations.
+- Preserve annotations, decorators, comments, and region markers unless an update is required because of a rename.
+- Keep comments intact unless they become inaccurate after a rename.
+- Do not remove unused code unless it is clearly broken or invalid.
+- Fix only clear syntax errors, clearly broken references, or safe naming-related issues visible in the provided code.
+- Respect the Godot version and syntax already used unless the code is clearly broken.
+- Do not modernize syntax or APIs unless necessary for correctness.
+- Do not invent missing nodes, scenes, resources, dependencies, or project structure.
+
+Godot safety rules:
+- If a rename could break behavior, editor links, external references, dynamic calls, project settings, autoloads, resources, scene integration, node paths, serialized data, or project structure, keep the original name unchanged.
+- Never rename Input action strings or other Project Settings names.
+- Do not rename dictionary keys, serialized data keys, animation names, exported property names, editor-facing identifiers, plugin/tool integration names, or other string-based references unless it is clearly safe.
+- Do not rename nodes referenced through get_node(), get_node_or_null(), unique-name lookups, NodePath usage, or $ paths unless the related references can also be updated safely.
+- Do not assume NodePath strings in scenes, resources, or serialized data are safe to rename unless those files are explicitly provided too.
+- Preserve @tool behavior and do not rename editor-exposed names if this could break inspector bindings, scene files, editor workflows, or serialized scene data.
+- Check dynamic references before renaming, including call(), callv(), Callable(), has_method(), emit_signal(), emit(), and string-based method, signal, or node lookups.
+- Keep signal declarations, connected methods, and signal emissions consistent after any safe rename.
+- When unsure whether a rename is safe, keep the original name unchanged.
+- When rules conflict, prefer preserving behavior and project integration over renaming for style.
+
+Output:
+- Return the full ready-to-paste refactored code.
+- Do not ask questions first.
+- Do not explain before giving the result.
+- Output only:
+  1. one full refactored code block
+  2. one very short summary of renamed variables, renamed functions, renamed constants, and any other safe fixes made
