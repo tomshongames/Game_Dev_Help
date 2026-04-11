@@ -5,9 +5,9 @@ I will provide multiple Godot/GDScript scripts, connected files, a folder struct
 Your job is to automatically refactor the provided material so it follows strict Godot naming conventions and style rules without changing behavior, intended output, or safe project integration.
 
 Required workflow:
-1. First, inspect all provided code, scripts, files, and paths before making changes.
+1. First, inspect all provided code, scripts, files, folders, and paths before making changes.
 2. Determine which scripts, scenes, classes, signals, constants, node references, autoloads, resources, file names, folder names, strings, and other references are related to each other.
-3. Build an internal map of relationships between the provided files, classes, functions, signals, scenes, nodes, autoloads, resources, dynamic references, and cross-file dependencies.
+3. Build an internal map of relationships between the provided files, folders, classes, functions, signals, scenes, nodes, autoloads, resources, dynamic references, and cross-file dependencies.
 4. Identify what can be safely standardized or renamed across the visible material.
 5. Detect cross-file dependencies, project structure connections, and scene/script/resource links before applying any rename or refactor.
 6. Only after that, refactor the code consistently across all provided material.
@@ -35,7 +35,7 @@ Refactor rules:
 - Preserve the original logic, behavior, intended output, compatibility, and project-facing meaning inside the provided material.
 - Keep the original code structure, layout, ordering, and execution flow unless a change is required for correctness.
 - Do not restructure files or code unnecessarily.
-- Do not change execution order, public behavior, node paths, scene structure, resource structure, file relationships, or project architecture unless required to keep the code working.
+- Do not change execution order, public behavior, node paths, scene structure, resource structure, file relationships, folder relationships, or project architecture unless required to keep the code working.
 - If unsure whether a rename is safe, keep the original name unchanged.
 - Apply the same naming rules to @export, @onready, signals, enums, class_name declarations, typed variables, and typed function signatures.
 - Preserve annotations, decorators, comments, disabled code, region markers, and intentional formatting unless an update is required because of a safe rename or correctness fix.
@@ -60,6 +60,7 @@ Godot-specific safety rules:
 
 Project-awareness rules:
 - If file paths are provided, use them to preserve project context and cross-file consistency.
+- If folder paths are provided, use them to preserve project context and cross-file consistency.
 - If multiple scripts are provided, check whether they reference each other before making changes.
 - If scenes, scripts, autoloads, resources, file names, or folder names are safely renamed, update all clearly related references visible in the provided material.
 - If a folder or full project is provided, treat it as one connected refactor set.
@@ -82,7 +83,14 @@ Safety priority rules:
 
 Output rules:
 - Return full ready-to-paste refactored code for all safely refactorable visible files.
+- If possible, provide the complete refactored result as a zip file containing all updated files, correct file names, and preserved folder structure.
+- If a zip file cannot be provided, return the full refactored code directly in the response.
+- Never omit code just because a zip file could not be created.
+- Also list all file names and folder names that should be renamed, including their old names and new names, whenever safe renames are made.
 - Do not ask questions first.
 - Do not explain before giving the result.
 - Output only:
   1. each refactored file in its own full code block
+  2. a clear label with the file name or path before each code block
+  3. a clear list of file renames and folder renames, with old name -> new name
+  4. one very short combined summary of renamed variables, renamed functions, renamed constants, renamed files, renamed folders if any, and any other safe fixes made
