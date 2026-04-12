@@ -2,29 +2,29 @@ Treat this as an automatic refactor and optimization task, not a teaching task.
 
 I may provide multiple Godot/GDScript scripts, connected files, a folder structure with file contents, or part or all of a Godot project.
 
-Your job is to automatically inspect, refactor, and optimize the provided material so it follows strict Godot naming conventions and style rules, while preserving behavior, intended output, safe project integration, and visible project structure unless a clearly safe rename, cleanup, or optimization is possible.
+Your job is to inspect, refactor, and optimize the provided material so it follows strict Godot naming conventions and style rules, while preserving behavior, intended output, safe project integration, and visible project structure unless a clearly safe rename, cleanup, or optimization is possible.
 
 CORE PRIORITY
 - Behavior, project integration, compatibility, and visible project structure are more important than style or optimization.
 - When safety is uncertain, keep the original unchanged.
 - Never claim to have updated references that were not visible.
 
-EXECUTION ORDER
+WORKFLOW
 1. Inspect all provided code, scripts, scenes, files, folders, and paths before making changes.
 2. Determine which scripts, scenes, classes, signals, constants, node references, autoloads, resources, strings, files, and folders are related.
 3. Build an internal dependency map across the visible material only.
 4. Detect cross-file dependencies, dynamic references, scene/script/resource links, editor-facing bindings, and project structure connections before applying changes.
-5. Identify what can be safely standardized, renamed, cleaned up, fixed, or optimized from the visible material only.
+5. Identify what can be safely renamed, standardized, cleaned up, de-duplicated, fixed, or optimized from the visible material only.
 6. Apply a safe refactor pass first for naming, clarity, consistency, and visible correctness.
-7. Only after the safe refactor pass is complete, apply safe optimizations that do not change behavior, timing, integration, visible structure, editor links, serialized data expectations, or runtime meaning.
-8. After the applied changes, provide a separate opinion section with possible further improvements that were not applied because they are higher risk, require incomplete visibility, or may alter behavior, structure, balance, timing, or compatibility.
+7. Only after the safe refactor pass is complete, apply safe optimizations and safe redundancy reduction that do not change behavior, timing, integration, visible structure, editor links, serialized data expectations, or runtime meaning.
+8. After the applied changes, provide a separate opinion section with possible further improvements, remaining redundancies, and higher-risk optimizations that were not applied because they may alter behavior, structure, timing, balance, compatibility, or rely on incomplete visibility.
 
 PRIMARY GOAL
 - Refactor the provided material to match the style guide where clearly safe.
 - Rename variables, functions, parameters, signals, classes, constants, file names, folder names, and internal identifiers whenever it is clearly safe.
-- Apply safe optimizations that improve clarity, maintainability, consistency, or runtime efficiency without changing behavior.
+- Apply safe optimizations that improve clarity, maintainability, consistency, redundancy reduction, or runtime efficiency without changing behavior.
 - Keep all related visible references consistent after every safe rename or safe optimization.
-- If a rename, fix, cleanup, optimization, or structural improvement may break behavior, editor links, external references, dynamic calls, project settings, autoloads, resources, scene integration, node paths, serialized data, cross-file links, timing, gameplay balance, or project structure, do not apply it. Mention it later only as a suggestion if supported by the visible material.
+- If a rename, fix, cleanup, deduplication, optimization, or structural improvement may break behavior, editor links, external references, dynamic calls, project settings, autoloads, resources, scene integration, node paths, serialized data, cross-file links, timing, gameplay balance, or project structure, do not apply it. Mention it later only as a suggestion if supported by the visible material.
 
 NAMING RULES
 - Use snake_case for variables, functions, parameters, signals, file names, and folder names.
@@ -51,7 +51,8 @@ OPTIMIZATION RULES
   1. clarity
   2. maintainability
   3. consistency
-  4. safe runtime efficiency
+  4. redundancy reduction
+  5. safe runtime efficiency
 - Safe optimization examples include:
   - removing clearly redundant temporary values when behavior remains identical
   - reducing repeated lookups when the result is stable in the visible scope
@@ -116,14 +117,14 @@ OUTPUT PRIORITY
    - a zip file containing the refactored and safely optimized result, or
    - full refactored files in code blocks.
 2. Do not ask any other question first unless absolutely necessary for correctness.
-3. If I choose zip and file creation is available, generate a zip containing the refactored result with preserved folder structure and correctly renamed files/folders whenever safe.
+3. If I choose zip and file creation is available, generate a zip containing the refactored result with preserved folder structure and correctly renamed files and folders whenever safe.
 4. If I choose zip but zip generation is unavailable, fall back to returning the full refactored files in code blocks.
 5. If I choose code blocks, return each refactored file in its own full code block with a clear file path label.
 
 ALWAYS INCLUDE
 - the list of safe file renames and folder renames
-- a very short summary of safe renames, safe fixes, and safe optimizations made
-- a small change report describing what was changed
+- a very short summary of safe renames, safe fixes, redundancy fixes, and safe optimizations made
+- a concise Change Report
 - a separate final section called "Opinion / Possible Further Improvements"
 
 FINAL OUTPUT FORMAT
@@ -134,12 +135,11 @@ FINAL OUTPUT FORMAT
   1. each refactored file in its own full code block
   2. a clear label with the file name or path before each code block
   3. a clear list of file renames and folder renames, old -> new
-  4. one very short combined summary of renamed variables, renamed functions, renamed constants, renamed files, renamed folders, safe optimizations, and any other safe fixes made
-  5. a small change report
+  4. one very short combined summary of renamed variables, renamed functions, renamed constants, renamed files, renamed folders, redundancy fixes, safe optimizations, and any other safe fixes made
+  5. a small Change Report
   6. a final section named "Opinion / Possible Further Improvements"
 
 CHANGE REPORT RULES
-- After the refactored output, include a short report named "Change Report".
 - Keep it concise and factual.
 - Group changes by category when applicable:
   - Renamed variables
@@ -152,33 +152,38 @@ CHANGE REPORT RULES
   - Renamed folders
   - Safe reference updates
   - Syntax fixes
+  - Redundancies fixed
   - Safe optimizations
   - Other safe fixes
 - For each category, list old -> new when relevant.
-- If a category has no safe changes, omit it.
+- Omit empty categories.
 - Do not include speculative or assumed changes.
 - Do not claim any unseen file was updated.
-- If some names or possible optimizations were intentionally kept unchanged for safety, include a brief "Kept Unchanged for Safety" section listing only the most relevant cases.
+- If some names, redundancies, or optimizations were intentionally kept unchanged for safety, include a brief "Kept Unchanged for Safety" section listing only the most relevant cases.
 
 OPINION / POSSIBLE FURTHER IMPROVEMENTS
 - This section must be clearly separated from the applied refactor result.
 - It must not be mixed with the list of applied changes.
 - It must contain these sub-sections:
   1. Safe changes applied
-  2. Possible improvements not applied due to risk or incomplete visibility
-  3. High-risk optimization or structural ideas not applied
+  2. Redundancies found
+  3. Possible improvements not applied due to risk or incomplete visibility
+  4. High-risk optimization or structural ideas not applied
+- In "Redundancies found", clearly separate:
+  - redundancies safely fixed
+  - redundancies intentionally kept for safety
 - It may include:
-  - deeper cleanup
-  - stronger optimization
-  - architectural restructuring
-  - scene organization improvements
-  - performance redesign
-  - preload/load strategy suggestions
-  - signal flow cleanup
-  - node caching opportunities
-  - data structure redesign
-  - maintainability improvements
+  - duplicated logic
+  - repeated node lookups
+  - repeated property access
+  - redundant temporary variables
+  - repeated conditions
+  - repeated branches
+  - unnecessary wrapper methods
+  - obvious no-op code
+  - maintainability issues
+  - performance opportunities
 - Only suggest ideas supported by the visible material.
-- Clearly mark these as suggestions, not applied changes.
+- Clearly mark non-applied ideas as suggestions, not applied changes.
 - Be honest when visibility is incomplete.
 - Never present a risky or non-applied suggestion as already done.
