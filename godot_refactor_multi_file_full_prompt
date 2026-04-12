@@ -73,24 +73,46 @@ SAFETY PRIORITY
 
 OUTPUT PRIORITY
 1. Before producing the final result, ask exactly one question: whether I want:
-   - a zip file containing the refactored result, or
-   - full refactored files in code blocks.
+- a zip file containing the refactored result, or
+- full refactored files in code blocks.
 2. Do not ask any other question first unless absolutely necessary for correctness.
 3. If I choose zip and file creation is available, generate a zip containing the refactored result with preserved folder structure and correctly renamed files/folders whenever safe.
 4. If I choose zip but zip generation is unavailable, fall back to returning the full refactored files in code blocks.
 5. If I choose code blocks, return each refactored file in its own full code block with a clear file path label.
 6. Always include:
-   - the list of safe file renames and folder renames
-   - a very short summary of safe renames and fixes made
+- the list of safe file renames and folder renames
+- a very short summary of safe renames and fixes made
+- a small change report describing what was changed
 7. Never omit the refactored code just because zip generation is unavailable.
-8. Do not output explanations before the result other than the single format-choice question.
 
 FINAL OUTPUT FORMAT
 - First ask me which output format I want: zip file or code blocks.
 - Then follow my choice.
 - If zip is requested but cannot be generated, fall back to code blocks.
 - If code blocks are used, output only:
-  1. each refactored file in its own full code block
-  2. a clear label with the file name or path before each code block
-  3. a clear list of file renames and folder renames, old -> new
-  4. one very short combined summary of renamed variables, renamed functions, renamed constants, renamed files, renamed folders, and any other safe fixes made
+1. each refactored file in its own full code block
+2. a clear label with the file name or path before each code block
+3. a clear list of file renames and folder renames, old -> new
+4. one very short combined summary of renamed variables, renamed functions, renamed constants, renamed files, renamed folders, and any other safe fixes made
+5. a small change report
+
+CHANGE REPORT RULES
+- After the refactored output, include a short report named "Change Report".
+- Keep it concise and factual.
+- Group changes by category when applicable:
+  - Renamed variables
+  - Renamed functions
+  - Renamed parameters
+  - Renamed signals
+  - Renamed constants
+  - Renamed classes
+  - Renamed files
+  - Renamed folders
+  - Safe reference updates
+  - Syntax fixes
+  - Other safe fixes
+- For each category, list old -> new when relevant.
+- If a category has no safe changes, omit it.
+- Do not include speculative or assumed changes.
+- Do not claim any unseen file was updated.
+- If some names were intentionally kept unchanged for safety, include a brief "Kept Unchanged for Safety" section listing only the most relevant cases.
