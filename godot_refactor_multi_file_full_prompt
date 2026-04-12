@@ -1,96 +1,96 @@
 Treat this as an automatic refactor task, not a teaching task.
 
-I will provide multiple Godot/GDScript scripts, connected files, a folder structure with file contents, or part or all of a Godot project.
+I may provide multiple Godot/GDScript scripts, connected files, a folder structure with file contents, or part or all of a Godot project.
 
-Your job is to automatically refactor the provided material so it follows strict Godot naming conventions and style rules without changing behavior, intended output, or safe project integration.
+Your job is to automatically refactor the provided material so it follows strict Godot naming conventions and style rules without changing behavior, intended output, safe project integration, or visible project structure unless a clearly safe rename is possible.
 
-Required workflow:
-1. First, inspect all provided code, scripts, files, folders, and paths before making changes.
-2. Determine which scripts, scenes, classes, signals, constants, node references, autoloads, resources, file names, folder names, strings, and other references are related to each other.
-3. Build an internal map of relationships between the provided files, folders, classes, functions, signals, scenes, nodes, autoloads, resources, dynamic references, and cross-file dependencies.
-4. Identify what can be safely standardized or renamed across the visible material.
-5. Detect cross-file dependencies, project structure connections, and scene/script/resource links before applying any rename or refactor.
-6. Only after that, refactor the code consistently across all provided material.
+REQUIRED WORKFLOW
+1. Inspect all provided code, scripts, scenes, files, folders, and paths before making changes.
+2. Determine which scripts, scenes, classes, signals, constants, node references, autoloads, resources, strings, and files are related.
+3. Build an internal dependency map across the visible material only.
+4. Identify what can be safely standardized or renamed.
+5. Detect cross-file dependencies, dynamic references, scene/script/resource links, and project structure connections before applying changes.
+6. Refactor consistently across all visible provided material only.
 
-Primary goal:
+PRIMARY GOAL
 - Refactor the provided material to match the style guide.
-- Rename variables, functions, parameters, signals, classes, constants, file names, folder names, and internal identifiers whenever it is safe to do so.
+- Rename variables, functions, parameters, signals, classes, constants, file names, folder names, and internal identifiers whenever it is clearly safe.
 - Keep all related references consistent after every safe rename across all visible files.
-- If a rename is unsafe or could break behavior, editor links, external references, dynamic calls, project settings, autoloads, resources, scene integration, node paths, serialized data, cross-file links, or project structure, keep the original name unchanged.
+- If a rename is unsafe or may break behavior, editor links, external references, dynamic calls, project settings, autoloads, resources, scene integration, node paths, serialized data, cross-file links, or project structure, keep the original name unchanged.
 
-Naming rules:
+NAMING RULES
 - Use snake_case for variables, functions, parameters, signals, file names, and folder names.
 - Use PascalCase for class names, scene names, and node names.
 - Use UPPER_CASE for constants.
 
-Refactor rules:
-- Treat all provided scripts and files as potentially connected unless clearly independent.
-- Maintain cross-file naming consistency across all provided material.
-- Rename variables, functions, parameters, signals, classes, constants, file names, folder names, and internal identifiers whenever it is safe and useful to do so in order to match the style guide.
-- Keep all related references consistent after every safe rename across all visible material.
+REFACTOR RULES
+- Treat all provided files as potentially connected unless clearly independent.
+- Maintain cross-file naming consistency across all visible material.
 - Rename booleans to natural names such as is_dead, can_move, has_target, has_key, is_active, or can_attack when appropriate.
-- Rename for clarity only when the current name is clearly too vague, misleading, a typo, or overly minimal, such as a single-letter or non-descriptive name with no meaningful purpose.
+- Rename for clarity only when the current name is clearly too vague, misleading, typo-ridden, or overly minimal.
 - Do not rename for subjective style preference alone.
 - Prefer minimal necessary changes over aggressive refactoring.
-- Preserve the original logic, behavior, intended output, compatibility, and project-facing meaning inside the provided material.
-- Keep the original code structure, layout, ordering, and execution flow unless a change is required for correctness.
-- Do not restructure files or code unnecessarily.
-- Do not change execution order, public behavior, node paths, scene structure, resource structure, file relationships, folder relationships, or project architecture unless required to keep the code working.
-- If unsure whether a rename is safe, keep the original name unchanged.
-- Apply the same naming rules to @export, @onready, signals, enums, class_name declarations, typed variables, and typed function signatures.
-- Preserve annotations, decorators, comments, disabled code, region markers, and intentional formatting unless an update is required because of a safe rename or correctness fix.
-- Keep comments intact unless they become inaccurate after a rename.
+- Preserve original logic, behavior, execution flow, intended output, compatibility, and project-facing meaning.
+- Do not restructure files or code unless required for correctness.
+- Keep comments, annotations, decorators, disabled code, region markers, and intentional formatting unless a safe rename requires an update.
 - Do not remove unused code unless it is clearly broken or invalid.
 - Fix only clear syntax errors, clearly broken visible references, or naming-related issues that can be safely corrected from the visible material.
-- Preserve existing formatting style where possible unless a change improves correctness or consistency.
-- Preserve indentation style and line endings where possible.
+- Preserve the existing Godot version style unless the visible code is clearly broken.
 
-Godot-specific safety rules:
-- If a rename could break behavior, editor links, external references, dynamic calls, project settings, autoloads, resources, scene integration, node paths, serialized data, or project structure, keep the original name unchanged.
-- Never rename strings used in Input methods such as Input.is_action_pressed(), Input.is_action_just_pressed(), Input.is_action_just_released(), Input.get_axis(), InputMap-related usage, or similar APIs, because these must match the Project Settings Input Map.
-- Do not rename dictionary keys, serialized data keys, save-data keys, JSON keys, config keys, animation names, state names, editor-facing identifiers, exported property names, plugin/tool integration names, or other string-based references unless it is clearly safe and all visible related references can also be updated safely.
-- Do not rename nodes if they are referenced through get_node(), get_node_or_null(), %UniqueName lookups, NodePath usage, owner lookups, find_child(), find_node(), or $ paths unless you are certain the corresponding scene-tree name would also be changed safely everywhere relevant.
-- Do not assume NodePath strings stored in scenes, resources, exports, serialized data, or external files are safe to rename unless those files are explicitly provided and the related references can also be updated safely.
-- Preserve @tool behavior and do not rename editor-exposed names or @export property names if doing so could break scene files, inspector bindings, editor workflows, serialized scene data, plugins, or tooling behavior.
-- Preserve names likely tied to animation tracks, AnimationPlayer, AnimationTree, state machines, blend trees, groups, tags, buses, shaders, materials, resources, and project settings unless the related references are also clearly visible and can be updated safely.
-- Check dynamic references before renaming anything, including call(), callv(), Callable(), has_method(), emit_signal(), emit(), method-name strings, signal-name strings, node-name strings, animation-name strings, state-name strings, resource-name strings, and other string-based lookups.
-- Keep signal declarations, connected methods, and signal emissions consistent after any safe rename.
-- Ensure renames do not break explicit connections, implicit signal naming, callable references, deferred calls, RPC names, or string-based dispatch.
-- Do not rename names that may be read externally by scenes, resources, tools, inspectors, plugins, project settings, or serialized data unless those references are visible and can be safely updated too.
+GODOT-SPECIFIC SAFETY RULES
+- Never rename Input action strings or InputMap-related strings.
+- Do not rename dictionary keys, JSON keys, config keys, save-data keys, animation names, state names, group names, bus names, shader parameter names, plugin/tool identifiers, or other string-based references unless all related visible references can also be safely updated.
+- Do not rename nodes if they are referenced through $, %, get_node(), get_node_or_null(), NodePath, find_child(), find_node(), owner lookups, exported NodePaths, serialized scene data, or external resources unless the corresponding scene-tree names are also visible and can be safely updated everywhere relevant.
+- Preserve @tool behavior and avoid renaming inspector-facing exported names when that could break scene files, editor bindings, tooling, or serialized data.
+- Check dynamic references before renaming anything, including call(), callv(), Callable(), has_method(), emit_signal(), emit(), RPC names, method-name strings, signal-name strings, node-name strings, animation-name strings, and state-name strings.
+- Keep signal declarations, signal emissions, connections, and connected methods consistent after any safe rename.
+- If unsure whether a rename is safe, do not rename it.
 
-Project-awareness rules:
-- If file paths are provided, use them to preserve project context and cross-file consistency.
-- If folder paths are provided, use them to preserve project context and cross-file consistency.
-- If multiple scripts are provided, check whether they reference each other before making changes.
-- If scenes, scripts, autoloads, resources, file names, or folder names are safely renamed, update all clearly related references visible in the provided material.
-- If a folder or full project is provided, treat it as one connected refactor set.
-- If the provided material is incomplete, refactor only what is visible, do not guess missing project parts, and do not claim that unseen references were updated.
-- Do not rename names likely tied to scene files, resources, autoloads, project settings, editor data, or external serialized references unless the relevant references are also visible and can be updated safely.
-- Do not assume an unseen scene file, resource file, `.tscn`, `.tres`, `.res`, `.godot`, plugin file, or project settings file has been updated unless it is explicitly included in the provided material.
+PROJECT-AWARENESS RULES
+- Use all provided file paths and folder paths to preserve project context.
+- If multiple files are provided, check whether they reference each other before changing anything.
+- If a file, folder, class, or scene name is safely renamed, update all clearly related references visible in the provided material.
+- If the material is incomplete, refactor only what is visible.
+- Never assume unseen .tscn, .tres, .res, .godot, addon, plugin, autoload, or project settings files were updated unless they were explicitly provided.
+- Never invent missing files or pretend unseen references were updated.
 - Preserve cross-file compatibility over style whenever there is uncertainty.
 
-Version and compatibility rules:
-- Respect the Godot version and syntax already used in the provided code unless the code is clearly broken.
-- Do not modernize syntax or APIs unless the current code is clearly broken or incompatible.
-- Do not convert working Godot 3 style to Godot 4 style, or vice versa, unless it is necessary for correctness and clearly supported by the visible material.
-- Preserve typed or untyped style already present unless a small safe correction is needed for consistency or correctness.
+FILE AND FOLDER RENAME POLICY
+- File renames are higher risk than symbol renames.
+- Only rename file names or folder names when all visible references to them are also visible and can be safely updated.
+- If file or folder rename safety is uncertain, keep the original file or folder name unchanged.
 
-Safety priority rules:
+VERSION AND COMPATIBILITY RULES
+- Respect the Godot version and syntax already used unless clearly broken.
+- Do not modernize syntax or APIs unless required for correctness.
+- Do not convert Godot 3 style to Godot 4 style, or vice versa, unless necessary and clearly supported by the visible material.
+- Preserve typed vs untyped style unless a small safe correction is needed for consistency or correctness.
+
+SAFETY PRIORITY
+- Behavior and project integration are more important than naming style.
 - When unsure whether a rename is safe, keep the original name unchanged.
-- When rules conflict, prefer preserving behavior, compatibility, and project integration over renaming for style.
-- Never claim to have updated references that are not visible in the provided material.
-- If something appears externally referenced but the target is not visible, leave it unchanged.
+- Never claim to have updated references that were not visible.
 
-Output rules:
-- Return full ready-to-paste refactored code for all safely refactorable visible files.
-- If possible, provide the complete refactored result as a zip file containing all updated files, correct file names, and preserved folder structure.
-- If a zip file cannot be provided, return the full refactored code directly in the response.
-- Never omit code just because a zip file could not be created.
-- Also list all file names and folder names that should be renamed, including their old names and new names, whenever safe renames are made.
-- Do not ask questions first.
-- Do not explain before giving the result.
-- Output only:
+OUTPUT PRIORITY
+1. Before producing the final result, ask exactly one question: whether I want:
+   - a zip file containing the refactored result, or
+   - full refactored files in code blocks.
+2. Do not ask any other question first unless absolutely necessary for correctness.
+3. If I choose zip and file creation is available, generate a zip containing the refactored result with preserved folder structure and correctly renamed files/folders whenever safe.
+4. If I choose zip but zip generation is unavailable, fall back to returning the full refactored files in code blocks.
+5. If I choose code blocks, return each refactored file in its own full code block with a clear file path label.
+6. Always include:
+   - the list of safe file renames and folder renames
+   - a very short summary of safe renames and fixes made
+7. Never omit the refactored code just because zip generation is unavailable.
+8. Do not output explanations before the result other than the single format-choice question.
+
+FINAL OUTPUT FORMAT
+- First ask me which output format I want: zip file or code blocks.
+- Then follow my choice.
+- If zip is requested but cannot be generated, fall back to code blocks.
+- If code blocks are used, output only:
   1. each refactored file in its own full code block
   2. a clear label with the file name or path before each code block
-  3. a clear list of file renames and folder renames, with old name -> new name
-  4. one very short combined summary of renamed variables, renamed functions, renamed constants, renamed files, renamed folders if any, and any other safe fixes made
+  3. a clear list of file renames and folder renames, old -> new
+  4. one very short combined summary of renamed variables, renamed functions, renamed constants, renamed files, renamed folders, and any other safe fixes made
