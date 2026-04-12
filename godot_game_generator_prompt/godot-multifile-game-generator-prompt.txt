@@ -1,0 +1,235 @@
+Treat this as an automatic Godot game generation and integration-aware implementation task, not a teaching task.
+
+I may provide:
+- a full game idea
+- a feature request
+- existing Godot/GDScript scripts
+- scenes
+- connected files
+- file paths
+- folder structures
+- node names
+- class names
+- signals
+- constants
+- shaders
+- partial project context
+- part or all of a Godot project
+
+Your job is to inspect the visible material and generate the required Godot files so they implement the requested game or feature as safely and completely as possible.
+
+Generate the requested files directly. Do not primarily review, critique, or suggest unless needed for safety.
+
+CORE PRIORITY
+- Correct behavior, compatibility, safe project integration, and visible project structure are more important than style or optimization.
+- Generated output must be practical, complete, and ready to place into a Godot project.
+- When project safety is uncertain, prefer the most conservative implementation.
+- Never claim to have updated references, scenes, resources, inspector bindings, or project settings that were not visible.
+- Never invent hidden project integration as if it were confirmed.
+
+PRIMARY GOAL
+- Generate a complete Godot-ready multi-file implementation matching the request.
+- Follow Godot naming conventions and style rules.
+- Keep generated files consistent with the visible project structure and visible conventions.
+- When existing visible material is provided, integrate with it safely.
+- When visibility is incomplete, generate files that are self-contained, clearly scoped, and minimally assumption-dependent.
+- Prefer robust, production-friendly structure over clever but risky abstractions.
+
+WORKFLOW
+1. Inspect all provided code, scripts, scenes, folders, file paths, node names, class names, signals, constants, resources, strings, and visible project structure before generating anything.
+2. Determine which visible files, scenes, nodes, classes, resources, and systems are related.
+3. Build an internal dependency map across the visible material only.
+4. Detect visible cross-file dependencies, dynamic references, scene/script/resource links, editor-facing bindings, and visible project structure connections before generating files.
+5. Determine what must be generated:
+   - new scripts
+   - new scenes
+   - updates to visible files
+   - shaders
+   - support resources when necessary
+   - node hierarchy instructions when needed
+6. Generate the safest complete implementation that fits the visible material and requested feature or game.
+7. After the safe implementation is complete, apply safe clarity, consistency, maintainability, and redundancy-reduction improvements that do not introduce risky assumptions.
+8. Provide a separate opinion section with possible future improvements, missing integrations, and higher-risk ideas not applied.
+
+GENERATION RULES
+- Generate complete files, not fragments, unless I explicitly ask for partial snippets.
+- Prefer implementations that are easy to attach, test, and integrate.
+- If a scene is needed, generate the scene file when possible or provide the exact scene hierarchy if scene generation is unavailable.
+- If a script depends on nodes, make the expected node structure explicit.
+- If a shader is requested or clearly required, generate the full shader code.
+- If a system spans multiple files, generate all required visible files in a consistent structure.
+- If a generated file depends on another generated file, keep references consistent.
+- Do not generate placeholder logic unless the request or missing visibility makes it necessary.
+- Avoid fake completeness. If something cannot be safely inferred, keep it configurable and clearly scoped.
+- Do not generate unnecessary files.
+
+INTEGRATION-AWARE SAFETY RULES
+- Treat all provided files as potentially connected unless clearly independent.
+- Respect visible folder structure, visible naming patterns, and visible architecture.
+- If existing visible files are being extended, preserve their intended behavior and project-facing meaning.
+- Do not assume unseen scenes, resources, autoloads, plugins, project settings, input actions, groups, buses, animations, save keys, shader params, or external files exist unless they were explicitly provided.
+- If a generated implementation depends on such things, either:
+  - use only clearly visible existing names, or
+  - expose them in a configurable way, or
+  - state them explicitly as required setup
+- Never pretend unseen references were already wired.
+
+NAMING RULES
+- Use snake_case for:
+  - variables
+  - functions
+  - parameters
+  - signals
+  - file names
+  - folder names
+- Use PascalCase for:
+  - class names
+  - scene names
+  - node names
+- Use UPPER_CASE for constants
+
+GODOT-SPECIFIC RULES
+- Respect the Godot version and syntax style visible in the provided material.
+- Do not mix Godot 3 and Godot 4 syntax unless explicitly requested.
+- Preserve typed vs untyped style unless consistency or correctness clearly benefits from one visible project style.
+- Do not invent InputMap actions unless requested. If input actions are needed and not visible, either:
+  - expose them clearly as required setup, or
+  - use configurable exported/input properties where appropriate
+- Do not rename or assume string-based references such as:
+  - input action names
+  - animation names
+  - group names
+  - state names
+  - bus names
+  - save keys
+  - JSON/config keys
+  - shader parameter names
+unless they are explicitly requested or fully visible and controlled within the generated result.
+- If using node references, prefer the safest approach for the visible context:
+  - @export node references when editor wiring is safer
+  - direct %UniqueNode or $NodePath only when the node structure is explicit and controlled
+  - get_node_or_null() when resilience is safer
+- Keep signal declarations, signal emissions, and connected methods consistent.
+
+STRUCTURE RULES
+- Do not restructure the provided project unless explicitly requested.
+- Do not move, split, merge, or rename existing files or folders unless explicitly requested or clearly safe from visible material.
+- New files may be added when required for a complete feature.
+- Keep new files grouped logically and with minimal structural disruption.
+- Prefer fewer, clearer files over unnecessary fragmentation.
+
+QUALITY RULES
+Prioritize, in order:
+1. correctness
+2. safe integration
+3. clarity
+4. maintainability
+5. consistency
+6. safe efficiency
+
+Generated code and files should:
+- avoid unnecessary duplication
+- avoid fragile assumptions
+- avoid misleading names
+- avoid dead code unless intentionally scaffolded
+- avoid overengineering
+- be readable and practical
+- be ready to paste into a project with minimal edits
+
+OPTIMIZATION RULES
+- Apply only safe optimizations that do not alter intended behavior or introduce integration risk.
+- Safe optimizations include:
+  - reducing repeated stable lookups
+  - avoiding obvious duplicated logic
+  - using clear helper methods when they improve maintainability without obscuring flow
+  - caching stable references when clearly safe
+  - using typed annotations when they improve correctness and match project style
+- Do not apply optimizations that may affect:
+  - timing
+  - process order
+  - physics behavior
+  - signal timing
+  - loading semantics
+  - memory lifecycle
+  - serialization expectations
+  - editor behavior
+  - animation flow
+  - randomness
+  - input behavior
+  - game balance
+unless explicitly requested and clearly safe
+
+WHEN MATERIAL IS INCOMPLETE
+- Generate only what is supported by the request and visible material.
+- Make missing dependencies explicit instead of pretending they exist.
+- Prefer self-contained and configurable implementations.
+- If exact integration cannot be proven, keep the feature modular and clearly state required hookup points.
+
+OUTPUT PRIORITY
+1. Return the result as a zip file containing the generated files with preserved folder structure when file creation is available.
+2. If zip generation is unavailable, fall back to returning the full generated files in code blocks.
+3. If code blocks are used as fallback, return each generated file in its own full code block with a clear file path label.
+4. Do not omit parts of files for brevity.
+
+ALWAYS INCLUDE
+- the list of newly created files
+- the list of updated files
+- the list of safe file renames and folder renames if any were applied
+- a very short summary of what was generated
+- a concise Change Report
+- a separate final section called "Opinion / Possible Further Improvements"
+
+FINAL OUTPUT FORMAT
+- Prefer zip output.
+- If zip output is possible, generate the zip and provide it.
+- If zip output is not possible, fall back to code blocks.
+- If code blocks are used, output only:
+  1. each generated file in its own full code block
+  2. a clear label with the file name or path before each code block
+  3. a clear list of created files
+  4. a clear list of updated files
+  5. a clear list of file renames and folder renames, old -> new
+  6. one very short combined summary of generated files, updated files, safe fixes, safe optimizations, and any other safe integration-aware decisions made
+  7. a small Change Report
+  8. a final section named "Opinion / Possible Further Improvements"
+
+CHANGE REPORT RULES
+- Keep it concise and factual.
+- Group changes by category when applicable:
+  - Created files
+  - Updated files
+  - Renamed variables
+  - Renamed functions
+  - Renamed parameters
+  - Renamed signals
+  - Renamed constants
+  - Renamed classes
+  - Renamed files
+  - Renamed folders
+  - Safe reference updates
+  - Syntax fixes
+  - Redundancies reduced
+  - Safe optimizations
+  - Other safe integration-aware fixes
+- For each category, list old -> new when relevant.
+- Omit empty categories.
+- Do not include speculative or assumed changes.
+- Do not claim any unseen file was updated.
+- If some possible integrations were intentionally left configurable for safety, include a brief "Kept Configurable for Safety" section.
+
+OPINION / POSSIBLE FURTHER IMPROVEMENTS
+- This section must be clearly separated from the generated result.
+- It must not be mixed with the list of applied changes.
+- It must contain these sub-sections:
+  1. Safe changes applied
+  2. Redundancies reduced or avoided
+  3. Possible improvements not applied due to risk or incomplete visibility
+  4. High-risk optimization or structural ideas not applied
+- Clearly distinguish:
+  - what was generated/applied
+  - what is only a suggestion
+- Be honest when visibility is incomplete.
+- Never present a risky or non-applied idea as already done.
+
+REQUEST TO IMPLEMENT
+[DESCRIBE THE FULL GAME, FEATURE SET, OR SYSTEM HERE]
