@@ -1,22 +1,25 @@
-Treat this as an automatic refactor task, not a teaching task.
+Treat this as an automatic refactor and optimization task, not a teaching task.
 
 I may provide multiple Godot/GDScript scripts, connected files, a folder structure with file contents, or part or all of a Godot project.
 
-Your job is to automatically refactor the provided material so it follows strict Godot naming conventions and style rules without changing behavior, intended output, safe project integration, or visible project structure unless a clearly safe rename is possible.
+Your job is to automatically inspect, refactor, and optimize the provided material so it follows strict Godot naming conventions and style rules, while preserving behavior, intended output, safe project integration, and visible project structure unless a clearly safe rename or optimization is possible.
 
 REQUIRED WORKFLOW
 1. Inspect all provided code, scripts, scenes, files, folders, and paths before making changes.
 2. Determine which scripts, scenes, classes, signals, constants, node references, autoloads, resources, strings, and files are related.
 3. Build an internal dependency map across the visible material only.
-4. Identify what can be safely standardized or renamed.
+4. Identify what can be safely standardized, renamed, cleaned up, or optimized.
 5. Detect cross-file dependencies, dynamic references, scene/script/resource links, and project structure connections before applying changes.
 6. Refactor consistently across all visible provided material only.
+7. Apply only safe optimizations that do not change behavior, project integration, visible structure, editor links, serialized data expectations, or runtime meaning.
+8. Separately report higher-risk improvements, deeper optimizations, architectural cleanups, or performance ideas that were not applied because they may alter behavior, structure, integration, balancing, timing, editor bindings, or external references.
 
 PRIMARY GOAL
 - Refactor the provided material to match the style guide.
 - Rename variables, functions, parameters, signals, classes, constants, file names, folder names, and internal identifiers whenever it is clearly safe.
-- Keep all related references consistent after every safe rename across all visible files.
-- If a rename is unsafe or may break behavior, editor links, external references, dynamic calls, project settings, autoloads, resources, scene integration, node paths, serialized data, cross-file links, or project structure, keep the original name unchanged.
+- Optimize the provided code as much as safely possible without changing behavior, intended output, project-facing meaning, safe integration, or visible project structure.
+- Keep all related references consistent after every safe rename or safe optimization across all visible files.
+- If a rename, cleanup, optimization, or structural improvement is unsafe or may break behavior, editor links, external references, dynamic calls, project settings, autoloads, resources, scene integration, node paths, serialized data, cross-file links, timing, gameplay balance, or project structure, keep it unchanged and mention it later only as a suggestion.
 
 NAMING RULES
 - Use snake_case for variables, functions, parameters, signals, file names, and folder names.
@@ -27,15 +30,45 @@ REFACTOR RULES
 - Treat all provided files as potentially connected unless clearly independent.
 - Maintain cross-file naming consistency across all visible material.
 - Rename booleans to natural names such as is_dead, can_move, has_target, has_key, is_active, or can_attack when appropriate.
-- Rename for clarity only when the current name is clearly too vague, misleading, typo-ridden, or overly minimal.
+- Rename for clarity only when the current name is clearly too vague, misleading, typo-ridden, overly minimal, or inconsistent.
 - Do not rename for subjective style preference alone.
-- Prefer minimal necessary changes over aggressive refactoring.
+- Prefer minimal necessary changes over aggressive refactoring when safety is uncertain.
 - Preserve original logic, behavior, execution flow, intended output, compatibility, and project-facing meaning.
-- Do not restructure files or code unless required for correctness.
-- Keep comments, annotations, decorators, disabled code, region markers, and intentional formatting unless a safe rename requires an update.
-- Do not remove unused code unless it is clearly broken or invalid.
-- Fix only clear syntax errors, clearly broken visible references, or naming-related issues that can be safely corrected from the visible material.
+- Do not restructure files or code unless required for correctness or clearly safe optimization.
+- Keep comments, annotations, decorators, disabled code, region markers, and intentional formatting unless a safe rename or safe optimization requires an update.
+- Do not remove unused code unless it is clearly broken, invalid, duplicated in a clearly safe way, or safely removable from the visible material.
+- Fix only clear syntax errors, clearly broken visible references, naming-related issues, or clearly safe performance/cleanup issues that can be safely corrected from the visible material.
 - Preserve the existing Godot version style unless the visible code is clearly broken.
+
+OPTIMIZATION RULES
+- Optimize only when the optimization is clearly safe from the visible material.
+- Prefer optimizations that improve readability, maintainability, consistency, and runtime efficiency without changing behavior.
+- Safe optimization examples include:
+  - removing clearly redundant temporary values when behavior remains identical
+  - reducing repeated lookups when the result is stable in the visible scope
+  - simplifying duplicated visible logic when the outcome remains identical
+  - caching repeated node or property access when clearly safe
+  - tightening loops or conditions when behavior remains identical
+  - removing obvious no-op code
+  - fixing clearly inefficient visible patterns when the intended result is unchanged
+  - improving local naming clarity that reduces maintenance risk
+- Do not apply optimizations that may change:
+  - timing
+  - update order
+  - physics behavior
+  - signal timing
+  - scene loading behavior
+  - lazy vs eager loading semantics
+  - memory lifecycle
+  - serialization expectations
+  - editor behavior
+  - tool scripts
+  - networking behavior
+  - animation/state flow
+  - randomness
+  - input behavior
+  - game balancing
+- If an optimization is potentially beneficial but not fully safe, do not apply it. Mention it later in the opinion/suggestions section instead.
 
 GODOT-SPECIFIC SAFETY RULES
 - Never rename Input action strings or InputMap-related strings.
@@ -44,16 +77,16 @@ GODOT-SPECIFIC SAFETY RULES
 - Preserve @tool behavior and avoid renaming inspector-facing exported names when that could break scene files, editor bindings, tooling, or serialized data.
 - Check dynamic references before renaming anything, including call(), callv(), Callable(), has_method(), emit_signal(), emit(), RPC names, method-name strings, signal-name strings, node-name strings, animation-name strings, and state-name strings.
 - Keep signal declarations, signal emissions, connections, and connected methods consistent after any safe rename.
-- If unsure whether a rename is safe, do not rename it.
+- If unsure whether a rename, cleanup, or optimization is safe, do not apply it.
 
 PROJECT-AWARENESS RULES
 - Use all provided file paths and folder paths to preserve project context.
 - If multiple files are provided, check whether they reference each other before changing anything.
 - If a file, folder, class, or scene name is safely renamed, update all clearly related references visible in the provided material.
-- If the material is incomplete, refactor only what is visible.
+- If the material is incomplete, refactor and optimize only what is visible.
 - Never assume unseen .tscn, .tres, .res, .godot, addon, plugin, autoload, or project settings files were updated unless they were explicitly provided.
 - Never invent missing files or pretend unseen references were updated.
-- Preserve cross-file compatibility over style whenever there is uncertainty.
+- Preserve cross-file compatibility over style or optimization whenever there is uncertainty.
 
 FILE AND FOLDER RENAME POLICY
 - File renames are higher risk than symbol renames.
@@ -67,23 +100,33 @@ VERSION AND COMPATIBILITY RULES
 - Preserve typed vs untyped style unless a small safe correction is needed for consistency or correctness.
 
 SAFETY PRIORITY
-- Behavior and project integration are more important than naming style.
-- When unsure whether a rename is safe, keep the original name unchanged.
+- Behavior and project integration are more important than naming style or optimization.
+- When unsure whether a rename, fix, or optimization is safe, keep the original unchanged.
 - Never claim to have updated references that were not visible.
 
 OUTPUT PRIORITY
 1. Before producing the final result, ask exactly one question: whether I want:
-- a zip file containing the refactored result, or
+- a zip file containing the refactored and safely optimized result, or
 - full refactored files in code blocks.
 2. Do not ask any other question first unless absolutely necessary for correctness.
 3. If I choose zip and file creation is available, generate a zip containing the refactored result with preserved folder structure and correctly renamed files/folders whenever safe.
 4. If I choose zip but zip generation is unavailable, fall back to returning the full refactored files in code blocks.
 5. If I choose code blocks, return each refactored file in its own full code block with a clear file path label.
-6. Always include:
+
+ALWAYS INCLUDE
 - the list of safe file renames and folder renames
-- a very short summary of safe renames and fixes made
+- a very short summary of safe renames, safe fixes, and safe optimizations made
 - a small change report describing what was changed
-7. Never omit the refactored code just because zip generation is unavailable.
+- a separate final section called "Opinion / Possible Further Improvements" containing:
+  - deeper improvements that could make the code cleaner, faster, safer, more scalable, or easier to maintain
+  - higher-risk optimizations not applied
+  - architectural improvements not applied
+  - possible scene/resource/project cleanups not applied
+  - performance opportunities not applied
+  - concise reasoning for why they were not applied automatically
+- In that final opinion section, clearly separate:
+  - "Safe changes applied"
+  - "Possible improvements not applied due to risk or incomplete visibility"
 
 FINAL OUTPUT FORMAT
 - First ask me which output format I want: zip file or code blocks.
@@ -93,8 +136,9 @@ FINAL OUTPUT FORMAT
 1. each refactored file in its own full code block
 2. a clear label with the file name or path before each code block
 3. a clear list of file renames and folder renames, old -> new
-4. one very short combined summary of renamed variables, renamed functions, renamed constants, renamed files, renamed folders, and any other safe fixes made
+4. one very short combined summary of renamed variables, renamed functions, renamed constants, renamed files, renamed folders, safe optimizations, and any other safe fixes made
 5. a small change report
+6. a final section named "Opinion / Possible Further Improvements"
 
 CHANGE REPORT RULES
 - After the refactored output, include a short report named "Change Report".
@@ -110,9 +154,19 @@ CHANGE REPORT RULES
   - Renamed folders
   - Safe reference updates
   - Syntax fixes
+  - Safe optimizations
   - Other safe fixes
 - For each category, list old -> new when relevant.
 - If a category has no safe changes, omit it.
 - Do not include speculative or assumed changes.
 - Do not claim any unseen file was updated.
-- If some names were intentionally kept unchanged for safety, include a brief "Kept Unchanged for Safety" section listing only the most relevant cases.
+- If some names or possible optimizations were intentionally kept unchanged for safety, include a brief "Kept Unchanged for Safety" section listing only the most relevant cases.
+
+OPINION / POSSIBLE FURTHER IMPROVEMENTS RULES
+- This section must be clearly separated from the applied refactor result.
+- It must not be mixed with the list of applied changes.
+- It may include stronger cleanup, deeper optimization, architectural restructuring, scene organization improvements, performance redesign, preload/load strategy suggestions, signal flow cleanup, node caching opportunities, data structure redesign, and maintainability improvements.
+- Only suggest ideas supported by the visible material.
+- Clearly mark these as suggestions, not applied changes.
+- Be honest when visibility is incomplete.
+- Never present a risky or non-applied suggestion as already done.
