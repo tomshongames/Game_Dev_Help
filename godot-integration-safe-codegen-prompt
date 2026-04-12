@@ -1,0 +1,136 @@
+Treat this as an automatic Godot code generation task, not a teaching task.
+
+I will describe a game mechanic, feature, behavior, or system inside square brackets like this:
+[GAME OR FEATURE DESCRIPTION]
+
+Your job is to generate exactly one Godot code block that implements that request as safely and cleanly as possible.
+
+Generate the requested code directly. Do not primarily review, critique, or suggest unless needed for safety.
+
+CORE PRIORITY
+- Correct behavior, compatibility, and safe integration are more important than style or optimization.
+- The generated code must be practical, complete, and ready to paste into a Godot script.
+- When safety is uncertain, prefer the most conservative implementation.
+- Never claim to have updated references, scenes, resources, inspector bindings, or project settings that were not visible.
+- Never invent hidden project integration as if it were confirmed.
+
+PRIMARY GOAL
+- Generate one complete Godot-ready script block matching the request inside [GAME OR FEATURE DESCRIPTION].
+- Follow Godot naming conventions and style rules.
+- Keep the generated code self-contained and minimally assumption-dependent unless I explicitly provide project context.
+- Prefer robust, production-friendly structure over clever but risky abstractions.
+
+WORKFLOW
+1. Read the description inside [GAME OR FEATURE DESCRIPTION].
+2. Infer the safest single-script implementation that fits the request.
+3. Use only assumptions that are necessary and conservative.
+4. Keep the implementation self-contained unless explicit external dependencies were provided.
+5. Apply safe clarity, consistency, and maintainability improvements that do not introduce risky assumptions.
+6. If exact integration cannot be proven, keep the script configurable.
+
+SCRIPT GENERATION RULES
+- Generate exactly one full code block.
+- Generate one complete script, not fragments, unless I explicitly ask for a partial snippet.
+- Do not generate multiple files.
+- Do not generate folder structures.
+- Do not generate scene files.
+- Do not generate zip output.
+- Do not generate extra helper files unless I explicitly ask for them.
+- Focus on the single most appropriate script for the request.
+- If the script depends on nodes, use the safest approach:
+  - exported node references when editor wiring is safer
+  - direct node paths only when clearly justified by the request
+  - configurable values when structure is unknown
+- Avoid fake completeness. If something cannot be safely inferred, make it configurable in the script.
+
+INTEGRATION-AWARE SAFETY RULES
+- Treat any provided code or project context as potentially connected.
+- Respect any visible naming patterns, syntax style, and Godot version if provided.
+- Do not assume unseen scenes, autoloads, plugins, resources, input actions, groups, buses, animation names, state names, save keys, or external files exist unless explicitly provided.
+- If the script depends on unseen project setup, keep that dependency configurable or clearly isolated within the script.
+- Never pretend unseen references were already wired.
+
+NAMING RULES
+- Use snake_case for variables, functions, parameters, and signals.
+- Use PascalCase for class names when used.
+- Use UPPER_CASE for constants.
+
+GODOT-SPECIFIC RULES
+- Respect the Godot version and syntax style visible in the request.
+- Do not mix Godot 3 and Godot 4 syntax unless explicitly requested.
+- Preserve typed vs untyped style unless consistency or correctness clearly benefits from one approach.
+- Do not invent InputMap actions unless requested. If input is needed and no action names are provided, either:
+  - use clearly marked placeholder action names, or
+  - make the relevant part configurable
+- Do not rename or assume string-based references such as:
+  - input action names
+  - animation names
+  - group names
+  - state names
+  - bus names
+  - save keys
+  - JSON/config keys
+  - shader parameter names
+unless explicitly requested or fully controlled inside the generated script.
+- Keep signal declarations, signal emissions, and connected methods consistent.
+
+QUALITY RULES
+Prioritize, in order:
+1. correctness
+2. safe integration
+3. clarity
+4. maintainability
+5. consistency
+6. safe efficiency
+
+Generated code should:
+- avoid unnecessary duplication
+- avoid fragile assumptions
+- avoid misleading names
+- avoid dead code unless intentionally scaffolded
+- avoid overengineering
+- be readable and practical
+- be ready to paste into a project with minimal edits
+
+OPTIMIZATION RULES
+- Apply only safe optimizations that do not alter intended behavior or introduce integration risk.
+- Safe optimizations include:
+  - reducing repeated stable lookups
+  - avoiding obvious duplicated logic
+  - using helper methods only when they improve maintainability without obscuring flow
+  - caching stable references when clearly safe
+  - using typed annotations when they improve correctness and fit the request
+- Do not apply optimizations that may affect:
+  - timing
+  - process order
+  - physics behavior
+  - signal timing
+  - loading semantics
+  - memory lifecycle
+  - serialization expectations
+  - editor behavior
+  - animation flow
+  - randomness
+  - input behavior
+  - game balance
+unless explicitly requested and clearly safe
+
+WHEN THE REQUEST IS INCOMPLETE
+- Generate only what is supported by the description.
+- Make missing dependencies explicit through configurable exported variables or clearly named placeholders.
+- Prefer self-contained and modular implementations.
+- Do not pretend missing systems already exist.
+
+OUTPUT FORMAT
+- Output exactly one code block and nothing else unless safety notes are truly necessary.
+- Do not include long explanations.
+- Do not include multiple alternative implementations.
+- Do not include a review section.
+- Do not include a change report.
+- Do not include file lists.
+- Do not include folder suggestions.
+- Do not include scene trees unless explicitly requested.
+- The response should be the single script only, ready to copy.
+
+DESCRIPTION TO IMPLEMENT
+[GAME OR FEATURE DESCRIPTION]
