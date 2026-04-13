@@ -1,0 +1,30 @@
+I am working on an existing Godot game project and I need help debugging or fixing it.
+
+Game/project context:
+[describe the game briefly]
+
+Engine/version:
+[Godot version]
+
+Current project structure:
+- folders: [list]
+- scenes: [list]
+- scripts: [list]
+- important node names: [list]
+
+Problem:
+[describe the bug, issue, broken behavior, or confusing structure]
+
+Do not generate code.
+
+I want you to analyze the project and tell me:
+- the most likely causes of the problem
+- which scenes, scripts, nodes, or UI parts are involved
+- whether the current naming or structure may be causing confusion
+- the safest way to fix it
+- what I should check first
+- what I should avoid changing if I want to keep the project stable
+- whether the project structure should be cleaned up or renamed for better maintenance
+
+Focus on debugging, project safety, naming clarity, and integration safety.
+Do not include art or asset organization unless I ask for it.
