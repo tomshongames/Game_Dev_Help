@@ -32,7 +32,7 @@ Game Idea: Define the core concept and gameplay mechanics (e.g., platformer, sho
 Art Direction: Decide on the style (e.g., 2D pixel art, 3D realistic, cartoonish). Create a visual style guide for consistency in colors, fonts, and overall design.
 Target Platform: Determine whether the game is for mobile, desktop, or web. Consider the technical requirements for each platform (e.g., performance constraints for mobile, system specs for PC).
 Budget and Timeline: Estimate the time and resources needed. Add a risk management section outlining potential risks and contingencies (e.g., delays, technical issues).
-Team Roles: If working with others, assign roles (e.g., programmer, artist, sound designer). Include sub-roles (e.g., environmental artist, narrative designer) for clearer responsibilities.
+Solo Role: As the sole developer, you’ll need to manage every aspect of the project. Consider breaking down your responsibilities into manageable chunks and prioritize tasks based on the project timeline.
 
 2. PROJECT SETUP
 
@@ -59,8 +59,8 @@ Audio Design: Define the sound mood for each scene and character. Consider a "mu
 4. PROTOTYPE AND PROOF OF CONCEPT
 
 Build a Simple Prototype: Start by implementing basic gameplay mechanics, movement, or core interactions.
-Prototype 1: Character movement and basic interactions
-Prototype 2: Core mechanics, combat, or level design
+Prototype 1: Character movement and basic interactions.
+Prototype 2: Core mechanics, combat, or level design.
 Playtesting: Test the core gameplay and adjust it based on feedback. Incorporate player feedback tools (e.g., surveys, user testing).
 
 5. SCENE AND ASSET DESIGN
@@ -112,7 +112,7 @@ Profiling: Use Godot’s built-in profiler to track performance bottlenecks.
 
 Playtesting: Test the game regularly and adjust the difficulty curve, balance, and mechanics based on feedback. Focus on player experience across different player types (casual, expert).
 Debugging: Use Godot’s debugger to track issues (e.g., errors, logic bugs). Consider automated testing for key gameplay mechanics.
-QA: If working with a team, have others test the game for bugs or gameplay issues.
+QA: Even though you're working alone, regularly check for bugs or gameplay issues to ensure quality.
 
 11. POLISHING
 
