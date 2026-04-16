@@ -1,3 +1,31 @@
+Task Breakdown: Percentage Time Allocation
+
+| **Phase**                                   | **Subtask**                             | **Percentage of Total Time**  |
+| ------------------------------------------- | --------------------------------------- | ----------------------------- |
+|                                             | **Team Setup and Roles**                | 1%                            |
+| **Pre-production (14%)**                    | **Brainstorming Ideas**                 | 5%                            |
+|                                             | **Concept Art and Style Guide**         | 8%                            |
+| ------------------------------------------- | --------------------------------------- | ----------------------------- |
+| **Prototype (14%)**                         | **Build Game Prototype**                | 10%                           |
+|                                             | **Define Scope**                        | 4%                            |
+| ------------------------------------------- | --------------------------------------- | ----------------------------- |
+|                                             | **Level Design**                        | 6%                            |
+| **Production (21%)**                        | **Art Production**                      | 10%                           |
+|                                             | **Programming Features**                | 5%                            |
+| ------------------------------------------- | --------------------------------------- | ----------------------------- |
+|                                             | **Polishing Mechanics**                 | 8%                            |
+| **Gameplay Refinement and Iteration (21%)** | **Audio Integration**                   | 7%                            |
+|                                             | **Additional Levels or Features**       | 6%                            |
+| ------------------------------------------- | --------------------------------------- | ----------------------------- |
+|                                             | **Bug Fixing**                          | 9%                            |
+| **Finalization and Testing (21%)**          | **Visual and Audio Enhancements**       | 7%                            |
+|                                             | **Final Level Design**                  | 5%                            |
+| ------------------------------------------- | --------------------------------------- | ----------------------------- |
+|                                             | **Final Polish**                        | 4%                            |
+| **Polish, Build, and Submit (9%)**          | **Game Build**                          | 3%                            |
+|                                             | **Submission**                          | 2%                            |
+| ------------------------------------------- | --------------------------------------- | ------------------------------|
+
 1. PLANNING AND CONCEPT
 
 Game Idea: Define the core concept and gameplay mechanics (e.g., platformer, shooter, RPG). Include a market analysis to understand the niche your game targets and how it differentiates itself.
