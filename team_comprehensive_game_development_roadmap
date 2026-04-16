@@ -1,0 +1,136 @@
+| -------------------------------------------- | --------------------------------------- | ----------------------------- | **Team Members Responsible**                  |
+| -------------------------------------------- | --------------------------------------- | ----------------------------- | --------------------------------------------- |
+| **Phase**                                    | **Subtask**                             | **Percentage of Total Time**  | **Team Members Responsible**                  |
+| -------------------------------------------  | --------------------------------------- | ----------------------------- | -----------------------------                 |
+| **Pre-production (14%)**                     | **Brainstorming Ideas**                 | 5.5%                          | Game Designer, Producer                       |
+|                                              | **Concept Art and Style Guide**         | 8.5%                          | Art Director, Visual Designer, Game Designer  |
+| -------------------------------------------  | --------------------------------------- | ----------------------------- | -----------------------------                 |
+| **Prototype (14%)**                          | **Build Game Prototype**                | 10%                           | Lead Developer, Programmer, Designer          |
+|                                              | **Define Scope**                        | 4%                            | Producer, Lead Developer                      |
+| -------------------------------------------  | --------------------------------------- | ----------------------------- | -----------------------------                 |
+|                                              | **Level Design**                        | 6%                            | Level Designer, Game Designer                 |
+| **Production (21%)**                         | **Art Production**                      | 10%                           | 2D Artist, 3D Artist, Art Director            |
+|                                              | **Programming Features**                | 5%                            | Programmer, Lead Developer                    |
+|                                              | **Polishing Mechanics**                 | 8%                            | Programmer, Game Designer, Playtester         |
+| **Gameplay Refinement and Iteration (21%)**  | **Audio Integration**                   | 7%                            | Sound Designer, Composer                      |
+|                                              | **Additional Levels or Features**       | 6%                            | Level Designer, Programmer                    |
+|                                              | **Bug Fixing**                          | 9%                            | Programmer, QA Tester, Lead Developer         |
+| **Finalization and Testing (21%)**           | **Visual and Audio Enhancements**       | 7%                            | Art Director, Sound Designer, Visual Designer |
+|                                              | **Final Level Design**                  | 5%                            | Level Designer                                |
+|                                              | **Final Polish**                        | 4%                            | Programmer, Visual Designer, Game Designer    |
+| **Polish, Build, and Submit (9%)**           | **Game Build**                          | 3%                            | Lead Developer, Programmer                    |
+|                                              | **Submission**                          | 2%                            | Producer, Lead Developer                      |
+| -------------------------------------------  | --------------------------------------- | ----------------------------- | -----------------------------                 |
+
+
+
+1. PLANNING AND CONCEPT
+
+Game Idea: Define the core concept and gameplay mechanics (e.g., platformer, shooter, RPG). Include a market analysis to understand the niche your game targets and how it differentiates itself. (Team members: Game Designer, Market Analyst)
+Art Direction: Decide on the style (e.g., 2D pixel art, 3D realistic, cartoonish). Create a visual style guide for consistency in colors, fonts, and overall design. (Team members: Art Director, Visual Designer)
+Target Platform: Determine whether the game is for mobile, desktop, or web. Consider the technical requirements for each platform (e.g., performance constraints for mobile, system specs for PC). (Team members: Technical Lead, Platform Specialist)
+Budget and Timeline: Estimate the time and resources needed. Add a risk management section outlining potential risks and contingencies (e.g., delays, technical issues). (Team members: Project Manager, Lead Developer)
+Team Roles: Assign roles (e.g., programmer, artist, sound designer). Include sub-roles (e.g., environmental artist, narrative designer) for clearer responsibilities. (Team members: Project Manager)
+
+2. PROJECT SETUP
+
+Create a New Project: Start with the latest version of Godot (in this case, 4.6). (Team members: Lead Developer)
+Set Up Directories: Create the following main directories in your project folder:
+scenes/ for game scenes
+scripts/ for GDScript files
+assets/ for images, sound files, fonts, etc.
+shaders/ for custom shaders
+ui/ for user interface elements
+prefabs/ for reusable game objects
+localization/ for future internationalization
+docs/ for project documentation
+(Team members: Lead Developer, Technical Artist)
+Version Control (Git): Set up a Git repository to track changes, backups, and collaboration. Use gitignore to avoid tracking unnecessary files (e.g., cache files, compiled code, temporary files). (Team members: Technical Lead, Developer)
+
+3. GAME DESIGN DOCUMENT (GDD)
+
+Game Mechanics: Describe the rules, goals, win/loss conditions, and game loops (e.g., exploration, combat, puzzle-solving). (Team members: Game Designer, Lead Developer)
+Storyline, Characters, and World-Building: Include a section for player progression (leveling, skill acquisition, inventory systems). (Team members: Narrative Designer, Game Designer)
+Controls, HUD, and UI Elements: Add wireframe mockups to visualize the layout and transitions between menus and scenes. (Team members: UI/UX Designer, Game Designer)
+Level Design and Progression: Plan level structure and progression (e.g., difficulty curve, unlockable areas). (Team members: Level Designer, Game Designer)
+Audio Design: Define the sound mood for each scene and character. Consider a "musical identity" or key instruments/genres. (Team members: Sound Designer, Composer)
+
+4. PROTOTYPE AND PROOF OF CONCEPT
+
+Build a Simple Prototype: Start by implementing basic gameplay mechanics, movement, or core interactions.
+Prototype 1: Character movement and basic interactions.
+Prototype 2: Core mechanics, combat, or level design.
+(Team members: Lead Developer, Programmer)
+Playtesting: Test the core gameplay and adjust it based on feedback. Incorporate player feedback tools (e.g., surveys, user testing). (Team members: QA Tester, Lead Developer)
+
+5. SCENE AND ASSET DESIGN
+
+Create Scenes: Build different scenes for your game (e.g., Menu, Game, Game Over). Break each scene into different nodes like:
+Control Nodes for UI (buttons, sliders, etc.)
+Sprite Nodes for visuals
+Collision Nodes for interactions
+MeshInstance3D for 3D objects
+(Team members: Scene Designer, Programmer)
+Assets:
+Use Sprite nodes for 2D assets (e.g., characters, backgrounds).
+Create AudioStreamPlayer nodes for sound effects and background music.
+Specify asset formats (e.g., 2048x2048 for backgrounds, 64x64 for icons).
+(Team members: 2D Artist, 3D Artist, Sound Designer)
+Shaders: Create custom shaders for visual effects (e.g., lighting, reflections, stylized effects). (Team members: Technical Artist, Shader Developer)
+
+6. PROGRAMMING AND GAMEPLAY MECHANICS
+
+Player Controls: Set up character movement, physics, and animations using GDScript or C#. Ensure proper feedback (e.g., visual/audio cues when the player hits obstacles). (Team members: Programmer, Animator)
+Input Handling: Use Godot’s input system (e.g., arrow keys, WASD). (Team members: Programmer)
+Collision Detection: Set up collision shapes with KinematicBody2D/3D for player movement. (Team members: Programmer)
+AI: Add enemy behaviors and interactions (e.g., pathfinding, state machines). Consider adaptive AI for difficulty adjustments. (Team members: AI Programmer)
+Game Loop: Define how the game runs by managing:
+Game states (main menu, in-game, pause, game over)
+Level progression
+Score tracking
+(Team members: Lead Developer, Programmer)
+Shaders: Create custom visual effects like lighting, reflections, or stylized effects for enhanced gameplay visuals. (Team members: Shader Developer, Visual Designer)
+
+7. UI AND MENUS
+
+UI Design: Implement a clean and intuitive interface (e.g., start menu, options, score display). Add user testing to ensure intuitiveness. (Team members: UI/UX Designer)
+Signals and Events: Use Godot’s signals to manage interactions between UI elements.
+Button Press → Change scene (start game)
+Score Update → Display new score in UI
+(Team members: Programmer, UI/UX Designer)
+Responsive UI: Ensure that the UI scales properly on different screen sizes using Control nodes and anchoring. (Team members: UI/UX Designer)
+
+8. SOUND AND MUSIC
+
+Background Music: Loop background music using AudioStreamPlayer. (Team members: Composer, Sound Designer)
+Sound Effects: Use AudioStreamPlayer for effects like jumping, shooting, and collisions. (Team members: Sound Designer)
+Audio Management: Handle volume control for music and sound effects in the settings menu. (Team members: Sound Designer)
+
+9. OPTIMIZATION
+
+Memory Management: Be mindful of memory usage; optimize assets (e.g., compress textures). Use tools like Valgrind or Godot’s profiler for memory leak detection. (Team members: Lead Developer, Technical Artist)
+Performance: Optimize performance (FPS stability) by reducing unnecessary computations and optimizing physics. Profile the game regularly to detect slowdowns. (Team members: Programmer, Technical Lead)
+Profiling: Use Godot’s built-in profiler to track performance bottlenecks. (Team members: Programmer, Lead Developer)
+
+10. TESTING AND DEBUGGING
+
+Playtesting: Test the game regularly and adjust the difficulty curve, balance, and mechanics based on feedback. Focus on player experience across different player types (casual, expert). (Team members: QA Tester, Lead Developer)
+Debugging: Use Godot’s debugger to track issues (e.g., errors, logic bugs). Consider automated testing for key gameplay mechanics. (Team members: Programmer, Lead Developer)
+QA: If working with a team, have others test the game for bugs or gameplay issues. (Team members: QA Tester)
+
+11. POLISHING
+
+Graphics: Finalize art, animations, and visual effects. Ensure smooth game feel (e.g., responsive controls, polished animations). (Team members: 2D Artist, Animator, Visual Designer)
+Audio: Polish sound effects, music, and voice acting. (Team members: Composer, Sound Designer)
+UI/UX: Ensure that the user interface is polished and responsive across devices and resolutions. (Team members: UI/UX Designer)
+
+12. RELEASE AND DISTRIBUTION
+
+Build: Build the game for the target platform (PC, mobile, web). Follow platform-specific guidelines for export (e.g., Android/PC export settings). (Team members: Lead Developer, Programmer)
+Store Setup: Prepare the game for release on platforms like Steam, Google Play, or Itch.io. (Team members: Project Manager, Marketing Specialist)
+Marketing: Create promotional material (e.g., trailers, screenshots) and develop a marketing plan to build community engagement (e.g., Discord, social media). (Team members: Marketing Specialist)
+
+13. POST-LAUNCH UPDATES
+
+Bug Fixes: Address player-reported issues post-launch. (Team members: Programmer, Lead Developer)
+Content Updates: Plan and release new features, levels, or events to keep players engaged. Add seasonal updates or DLC content to retain interest. (Team members: Game Designer, Programmer)
