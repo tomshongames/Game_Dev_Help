@@ -99,6 +99,72 @@ PROJECT-AWARENESS RULES
 - Never invent missing files or pretend unseen references were updated.
 - Preserve cross-file compatibility over style or optimization whenever there is uncertainty.
 
+FOLDER STRUCTURE STANDARD (SAFE-APPLY)
+
+Target preferred structure:
+
+scripts/
+  *.gd
+
+scenes/
+  *.tscn
+
+art/
+  textures, sprites, images
+
+audio/
+  music, sfx
+
+- Scripts should be placed inside "scripts/" when clearly safe.
+- Scenes should be placed inside "scenes/" when clearly safe.
+- Visual assets should be placed inside "art/" when clearly safe.
+- Audio assets should be placed inside "audio/" when clearly safe.
+
+- This rule is secondary to all safety rules:
+  - Do NOT move files if any references (NodePaths, preload/load paths, resources, scenes, autoloads, or dynamic strings) are not fully visible.
+  - Do NOT move files if it may break scene links, resource links, or project structure.
+  - Do NOT assume unseen files were updated.
+
+- Only apply file moves when ALL of the following are true:
+  1. The file is clearly misplaced
+  2. All visible references to that file can be safely updated
+  3. No dynamic or string-based references are detected
+  4. The move does not affect runtime behavior, loading, or editor bindings
+
+- If safe file relocation is applied:
+  - Update all visible paths accordingly
+  - Preserve relative structure inside each folder
+  - Do not rename files unless also clearly safe
+
+- If structure is inconsistent but cannot be safely changed:
+  - Keep original structure unchanged
+  - Report it in "Opinion / Possible Further Improvements"
+
+- Do NOT reorganize beyond this structure
+
+- Prefer sub-organization inside folders when clearly safe:
+
+  Examples:
+  art/player/
+  art/enemy/
+  art/ui/
+  audio/music/
+  audio/sfx/
+
+- Group assets by purpose or entity when:
+  - All references are visible
+  - Moving them will not break paths
+
+- Do NOT enforce subfolder creation if:
+  - Structure is already in use
+  - References are not fully visible
+  - It may break resource paths or scene links
+
+- Naming inside folders:
+  - Prefer descriptive names like:
+    player_sprite.png, enemy_sprite.png, ui_button.png
+  - Do NOT rename assets if they are referenced and not fully visible
+
 FILE AND FOLDER RENAME POLICY
 - File renames are higher risk than symbol renames.
 - Folder renames are allowed when clearly safe.
